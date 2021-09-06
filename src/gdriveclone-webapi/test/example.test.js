@@ -6,6 +6,6 @@ import {
 
 describe('#Teste de execução básica do Jest', () => {
     test('#teste teste', () => {
-        expect(true).toBeTruthy()
+        expect(false).toBeTruthy()
     })
 })
