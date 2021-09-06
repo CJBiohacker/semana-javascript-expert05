@@ -5,12 +5,11 @@ const PORT = process.env.PORT || 3000                       // Constante que lev
 const localHostSSL = {                                      // Constante que recebe um objeto com os certificados de permissão SSL.
     key: fs.readFileSync('./certificates/key.pem'),
     cert: fs.readFileSync('./certificates/cert.pem'),
-
 }
 
-const server = https.createServer(                          // Constante que recebe um objeto com os certificados de permissão SSL.
+const server = https.createServer(                          // Constante que recebe as configurações de criação do servidor https. 
     localHostSSL,
     (req, res) => {
-        res.end
+        res.end("Commencing Virtuous Mission... NOW !!!")
     }
 )
