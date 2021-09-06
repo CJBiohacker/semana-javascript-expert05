@@ -1,12 +1,11 @@
-import pino from 'pino'
+import pino from 'pino'                 // Importando o módulo interno 'pino' para o 'nodejs'.
 
-// Variável que acessa a biblioteca de logging Pino Pretty Print para o NodeJS
-const logger = pino({
+const logger = pino({                   // Variável que acessa a biblioteca de logging Pino Pretty Print para o NodeJS
     prettyPrint: {
-        ignore: 'pid, hostname'     // Ignora o Id do Processo e o Hostname.
+        ignore: 'pid, hostname'         // Ignora o Id do Processo e o Hostname.
     }
 })
 
-export {
+export {                                // Exporta a constante 'logger' para uso externo.
     logger,
 }
