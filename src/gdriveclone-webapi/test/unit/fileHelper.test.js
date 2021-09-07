@@ -6,8 +6,8 @@ import Routes from '../../src/routes.js';                                       
 
 describe('#FileHelper Test', () => {                                                           // Teste Jest do conjunto do FileHelper.
 
-    describe('#setSocketInstance Test', () => {                                                // Teste Jest do método 'setSocketInstance' declarado através de um construtor de classe.
-        test.todo("#setSocket should store 'io' instance", () => {
+    describe('#getFiletStatus Test', () => {                                                   // Teste Jest do método 'getFiletStatus.
+        test("it should return file statuses in correct", async () => {
 
             const statMock = [
                 {
@@ -25,9 +25,9 @@ describe('#FileHelper Test', () => {                                            
                     mtimeMs: 1610410847000,
                     ctimeMs: 1631051904095.6487,
                     birthtimeMs: 1628625145477.3994,
-                    atime: '2021 - 09 - 07T21: 58: 30.008Z',
-                    mtime: '2021 - 01 - 12T00: 20: 47.000Z',
-                    ctime: '2021 - 09 - 07T21: 58: 24.096Z',
+                    atime: '2021-09-07T21:58:30.008Z',
+                    mtime: '2021-01-12T00:20:47.000Z',
+                    ctime: '2021-09-07T21:58:24.096Z',
                     birthtime: '2021-08-10T19:52:25.477Z'
                 }
             ]
@@ -36,11 +36,12 @@ describe('#FileHelper Test', () => {                                            
             process.env.USER = mockUser
             const fileName = 'testfile.png'
 
-            jest.spyOn(fs.promises, fs.promises.readdir.name).mockResolvedValue(statMock)
+            jest.spyOn(fs.promises, fs.promises.readdir.name).mockResolvedValue([fileName])
 
             jest.spyOn(fs.promises, fs.promises.stat.name).mockResolvedValue(statMock)
 
-            const result = await FileHelper.getFileStatus()
+            const result = await FileHelper.getFileStatus("/tmp")
+
             const expectedResult = [
                 {
                     size: '499.7 kb',
@@ -49,6 +50,9 @@ describe('#FileHelper Test', () => {                                            
                     file: fileName
                 }
             ]
+
+            expect(fs.promises.stat).toHaveBeenCalledWith(`/tmp/${filename}`)
+            expect(result).toMatchObject(expectedResult)
         })
     })
 })
