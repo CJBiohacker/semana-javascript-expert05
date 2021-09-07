@@ -9,21 +9,21 @@ export default class Routes {                                                   
         this.io = io
     }
 
-    async defaultRoute(request, response) {                                         // Método que faz o pedido e resposta entre server e usuário.
+    async defaultRoute(request, response) {                                         // Método que faz a rota do pedido e resposta entre server e usuário.
         response.end(`DEFAULT_ROUTE: Olá Mundo 1 !!!`)
     }
 
-    async options(request, response) {                                              // 
+    async options(request, response) {                                              // Rota de pedido de método 'https OPTIONS'.
         response.writeHead(204)
         response.end(`OPTIONS: Olá Mundo 2 !!!`)
     }
 
-    async post(request, response) {                                                 // 
+    async post(request, response) {                                                 // Rota de pedido de método 'https POST'.
         logger.info('post')
         response.end()
     }
 
-    async get(request, response) {                                                  // 
+    async get(request, response) {                                                  // Rota de pedido de método 'https GET'.
         logger.info('get')
         response.end()
     }
