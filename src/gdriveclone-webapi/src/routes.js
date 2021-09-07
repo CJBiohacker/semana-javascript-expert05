@@ -29,7 +29,7 @@ export default class Routes {                                                   
     }
 
     handler = (request, response) => {                                              // Configuração de gerenciamento dos métodos (pedido,resposta) 
-        response.setHeader('Acess-Control-Allow-Origin', '*')
+        response.setHeader('Access-Control-Allow-Origin', '*')
         const chosen = this[request.method.toLowerCase()] || this.defaultRoute      // Conversão para 'lowerCase' para evitar conflito com o nome das funções de rota criadas.
 
         return chosen.apply(this, [request, response])
