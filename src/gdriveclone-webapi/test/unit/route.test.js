@@ -104,4 +104,8 @@ describe('#Routes Test Suite', () => {                                          
             expect(routes.get).toHaveBeenCalled()
         })
     })
+
+    describe('#get Test', () => {
+        test.todo("given method GET it should list all files downloaded")
+    })
 })
