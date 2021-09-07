@@ -1,7 +1,8 @@
 import { describe, test, expect, jest } from '@jest/globals'                                   // Importando os 3 métodos globais do Jest: 'describe', 'teste' e 'expect'; 
 import fs from 'fs';
 import FileHelper from '../../src/fileHelper.js';
-import Routes from '../../src/routes.js';                                                      // Importando do Routes.
+
+import Routes from '../../src/routes.js';
 
 
 describe('#FileHelper Test', () => {                                                           // Teste Jest do conjunto do FileHelper.
