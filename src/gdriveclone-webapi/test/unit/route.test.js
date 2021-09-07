@@ -49,9 +49,8 @@ describe('#Routes Test Suite', () => {                                          
             }
 
             params.request.method = 'inexistent'
-            await routes.handler(...defaultParams.values())
-            expect(params.response.end).
-                toHaveBeenCalledWith('DEFAULT_ROUTE: Olá Mundo 1 !!!')
+            await routes.handler(...params.values())
+            expect(params.response.end).toHaveBeenCalledWith('DEFAULT_ROUTE: Olá Mundo 1 !!!')
 
         })
 
@@ -62,26 +61,22 @@ describe('#Routes Test Suite', () => {                                          
             }
 
             params.request.method = 'inexistent'
-            await routes.handler(...defaultParams.values())
-            expect(params.response.setHeader).
-                toHaveBeenCalledWith('Access-Control-Allow-Origin', '*')
+            await routes.handler(...params.values())
+            expect(params.response.setHeader).toHaveBeenCalledWith('Access-Control-Allow-Origin', '*')
         })
 
-        test.todo("given method OPTIONS it should choose 'options' route", async () => {             // Teste do método 'options'.
+        test("given method OPTIONS it should choose 'options' route", async () => {             // Teste do método 'options'.
             const routes = new Routes()
             const params = {
                 ...defaultParams
             }
 
             params.request.method = 'OPTIONS'
-            await routes.handler(...defaultParams.values())
-            expect(params.response.writeHead).
-                toHaveBeenCalledWith(204)
-            expect(params.response.setHeader).
-                toHaveBeenCalledWith(`OPTIONS: Olá Mundo 2 !!!`)
+            await routes.handler(...params.values())
+            expect(params.response.writeHead).toHaveBeenCalledWith(204)
+            expect(params.response.end).toHaveBeenCalled()
 
         })
-
 
         test("given method POST it should choose 'post' route", async () => {                   // Teste do método 'post'.
             const routes = new Routes()
@@ -92,9 +87,8 @@ describe('#Routes Test Suite', () => {                                          
             params.request.method = 'POST'
             jest.spyOn(routes, routes.post.name).mockResolvedValue()
 
-            await routes.handler(...defaultParams.values())
-            expect(params.response.setHeader).
-                toHaveBeenCalledWith(`post`)
+            await routes.handler(...params.values())
+            expect(routes.post).toHaveBeenCalled()
         })
 
         test("given method GET it should choose 'get' route", async () => {                      // Teste do método 'get'.
@@ -106,9 +100,8 @@ describe('#Routes Test Suite', () => {                                          
             params.request.method = 'GET'
             jest.spyOn(routes, routes.get.name).mockResolvedValue()
 
-            await routes.handler(...defaultParams.values())
-            expect(params.response.setHeader).
-                toHaveBeenCalledWith(`get`)
+            await routes.handler(...params.values())
+            expect(routes.get).toHaveBeenCalled()
         })
     })
 })
