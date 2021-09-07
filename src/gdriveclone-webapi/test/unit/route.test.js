@@ -108,14 +108,7 @@ describe('#Routes Test Suite', () => {                                          
     describe('#get Test', () => {
         test("given method GET it should list all files downloaded", async () => {
 
-            const fileStatusesMock = [
-                {
-                    size: 499719,
-                    birthtime: '2021-08-10T19:52:25.477Z',
-                    owner: 'carlos',
-                    file: 'testfile.png'
-                }
-            ]
+
         })
     })
 })
