@@ -107,7 +107,27 @@ describe('#Routes Test Suite', () => {                                          
 
     describe('#get Test', () => {
         test("given method GET it should list all files downloaded", async () => {
+            const routes = new Routes()
+            const params = {
+                ...defaultParams
+            }
 
+            const filesStatusesMock = [
+                {
+                    size: '500 kB',
+                    lastModified: '2021-08-10T19:52:25.477Z',
+                    owner: 'carlos',
+                    file: 'fileName'
+                }
+            ]
+            jest.spyOn(routes.fileHelper, routes.fileHelper.getFileStatus.name)
+                .mockResolvedValue(filesStatusesMock)
+
+            params.request.method = 'GET'
+            await routes.handler(...params.values())
+
+            expect(params.response.writeHead).toHaveBeenCalledWith(200)
+            expect(params.response.end).toHaveBeenCalledWith(JSON.stringify(filesStatusesMock))
 
         })
     })

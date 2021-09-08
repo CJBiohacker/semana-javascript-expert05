@@ -1,8 +1,15 @@
+import FileHelper from "./fileHelper.js"
 import { logger } from "./logger.js"                                                // Importação do 'logger'.
+import { dirname, resolve } from "path"
+import { fileURLToPath } from "url"
 
+const __dirname = dirname(fileURLToPath(import.meta.url))                           // Variável que diz o caminho absoluto para o diretório atual.
+const defaultDownloadsFolder = resolve(__dirname, '../', "downloads")
 export default class Routes {                                                       // Classe 'Routes' que representa arquivo de rotas do server.
     io
-    constructor() {
+    constructor(downloadsFolder) {
+        this.downloadsFolder = downloadsFolder
+        this.fileHelper = FileHelper
     }
 
     setSocketInstance(io) {
@@ -24,8 +31,10 @@ export default class Routes {                                                   
     }
 
     get = async (request, response) => {                                            // Rota de pedido de método 'https GET'.
-        logger.info('get')
-        response.end()
+        const files = await this.fileHelper.getFileStatus(this.downloadsFolder)
+
+        response.writeHead(200)
+        response.end(JSON.stringify(files))
     }
 
     handler = (request, response) => {                                              // Configuração de gerenciamento dos métodos (pedido,resposta) 
