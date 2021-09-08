@@ -43,14 +43,14 @@ describe('#FileHelper Test', () => {                                            
 
             const expectedResult = [
                 {
-                    size: '499.7 kb',
-                    birthtime: statMock.birthtime,
+                    size: '500 kB',
+                    lastModified: statMock.birthtime,
                     owner: mockUser,
                     file: fileName
                 }
             ]
 
-            expect(fs.promises.stat).toHaveBeenCalledWith(`/tmp/${filename}`)
+            expect(fs.promises.stat).toHaveBeenCalledWith(`/tmp/${fileName}`)
             expect(result).toMatchObject(expectedResult)
         })
     })

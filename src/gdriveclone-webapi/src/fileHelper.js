@@ -8,10 +8,17 @@ export default class FileHelper {
         const statuses = await Promise.all(currentFiles.map(file =>
             fs.promises.stat(`${downloadsFolder}/${file}`)))
 
+        const filesStatuses = []
         for (const fileIndex in currentFiles) {
             const { birthtime, size } = statuses[fileIndex]
-            console.log({ birthtime, size: prettyBytes(size) })
+            filesStatuses.push({
+                size: prettyBytes(size),
+                file: currentFiles[fileIndex],
+                lastModified: birthtime,
+                owner: process.env.USER
+            })
 
         }
+        return filesStatuses
     }
 }
