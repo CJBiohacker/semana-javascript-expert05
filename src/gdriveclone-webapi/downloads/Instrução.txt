@@ -1,0 +1,3 @@
+Jogue os seus arquivos (texto, vídeo, código, imagem, etc) nesta pasta e realize o teste da API NodeJS através do comando 'npm start'.
+
+Ao abrir o navegador no endereço 'https:/localhost:3000', todos itens lançados na pasta downloas apareceram como 'objeto' contendo as informações de propriedade do arquivo.
